@@ -1,0 +1,61 @@
+package com.bolsadeideas.springboot.app.controllers;
+
+import java.util.Date;
+import java.util.List;
+
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.bolsadeideas.springboot.app.models.entity.Cliente;
+import com.bolsadeideas.springboot.app.models.service.IClienteService;
+
+@RestController
+//@RequestMapping("/pruebas2")
+public class ClienteController2 {
+
+	@Autowired
+	private IClienteService clienteService;
+	
+	@GetMapping("/test")
+	public String test(){
+		
+		return "HOLA";
+	}
+	
+	@GetMapping("/listar2")
+	public List<Cliente> listar2(){
+		return clienteService.findAll();
+	}
+	
+	@RequestMapping(value="/crearBD")
+	public Cliente crearBD(@Valid @RequestBody Cliente cliente){
+		
+		 return clienteService.saveDB(cliente);
+	}
+	
+	
+	 
+	 
+	@PostMapping(value="/editarBD/{nombre}&{apellido}&{email}&{create_at}&{id}")
+	public Cliente editarBD(@PathVariable (value="nombre") String nombre,
+			@PathVariable (value="apellido") String apellido,
+			@PathVariable (value="email") String email,
+			//@PathVariable (value="create_at") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date create_at,
+			@PathVariable (value="create_at") Date create_at,
+			@PathVariable (value="id") Long id){
+		
+				//SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+				//Date date = formatter.parse(fecha);
+		
+		 return clienteService.updateBD(id, nombre, apellido, email, create_at);
+	} 
+	  
+}

@@ -1,0 +1,76 @@
+package com.bolsadeideas.springboot.app.models.service;
+
+import java.util.Date;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.QueryByExampleExecutor;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.bolsadeideas.springboot.app.models.dao.IClienteDao;
+import com.bolsadeideas.springboot.app.models.entity.Cliente;
+
+@Service
+public class ClienteServiceImpl implements IClienteService {
+
+	@Autowired
+	private IClienteDao clienteDao;
+	
+	
+	
+	@Override
+	@Transactional(readOnly = true)
+	public List<Cliente> findAll() {
+		// TODO Auto-generated method stub
+		List<Cliente> cliente = (List<Cliente>) clienteDao.findAll();
+		
+		return cliente;
+	}
+
+	@Override
+	@Transactional
+	public void save(Cliente cliente) {
+		clienteDao.save(cliente);
+		
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public Cliente findOne(Long id) {
+		// TODO Auto-generated method stub
+		return clienteDao.findById(id).orElse(null);
+	}
+
+	@Override
+	@Transactional
+	public void delete(Long id) {
+		clienteDao.deleteById(id);
+		
+	}
+
+	@Override
+	public Cliente saveDB(Cliente cliente) {
+		
+		Cliente crearCliente = clienteDao.save(cliente);
+		return crearCliente;
+	}
+
+	
+	 
+	@Override
+	public Cliente updateBD(Long id, String nombre, String apellido, String email, Date create_at) {
+		
+		Cliente existCliente= ((IClienteService) clienteDao).findOne(id);
+		if(existCliente!=null) {
+			existCliente.setNombre(nombre);
+			existCliente.setApellido(apellido);
+			existCliente.setEmail(email);
+			existCliente.setCreateAt(create_at);
+			existCliente = clienteDao.save(existCliente);
+		}
+		
+		return existCliente;
+	}
+ 
+}

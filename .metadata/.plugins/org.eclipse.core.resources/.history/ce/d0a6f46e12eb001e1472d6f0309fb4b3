@@ -1,0 +1,28 @@
+#spring.datasource.url=jdbc:mysql://localhost/db_springboot?serverTimezone=America/Santiago&useSSL=false
+#spring.datasource.username=root
+#spring.datasource.password=sasa
+#spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+#spring.jpa.database-platform=org.hibernate.dialect.MySQL8Dialect
+#spring.jpa.hibernate.ddl-auto=create-drop
+#logging.level.org.hibernate.SQL=debug
+
+#spring.datasource.url=jdbc:sqlserver://sqlpruebas4444.database.windows.net;databaseName=Pruebas;applicationName=PRUEBAS_ERICK
+#spring.datasource.username=ecadminsql
+#spring.datasource.password=Eac1eloC4@sql
+#spring.datasource.driverClassName=com.microsoft.sqlserver.jdbc.SQLServerDriver
+#spring.jpa.database-platform=org.hibernate.dialect.SQLServer2012Dialect
+#spring.jpa.show-sql=true
+#spring.datasource.testOnBorrow=true
+#spring.datasource.validationQuery=SELECT 1
+#logging.level.org.hibernate.SQL=debug 
+
+spring.datasource.url=jdbc:sqlserver://localhost:1433;databaseName=db_back
+spring.datasource.username=sa
+spring.datasource.password=pass
+spring.datasource.driverClassName=com.microsoft.sqlserver.jdbc.SQLServerDriver
+spring.jpa.show-sql=true
+spring.jpa.hibernate.ddl-auto=create-drop
+spring.jpa.database-platform=org.hibernate.dialect.SQLServer2012Dialect
+spring.datasource.testOnBorrow=true
+spring.datasource.validationQuery=SELECT 1
+logging.level.org.hibernate.SQL=debug 
